@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <head>
+        <link rel="stylesheet" href="src/style.css">
+        <title id="title">Calculadoras de Fisica</title>
+        <script>
+            //Faraday
+            function fem(){
+                var N = parseFloat(document.getElementById("N").value);
+                var flow = parseFloat(document.getElementById("dFb").value);
+                var dt = parseFloat(document.getElementById("dt").value);
+
+                var fem = (N * -1) * Math.abs((flow / dt));
+
+                document.getElementById("fem").value = fem;
+            }
+            function Flowfar(){
+                var N = parseFloat(document.getElementById("N1").value);
+                var fem = parseFloat(document.getElementById("Fem").value);
+                var dt = parseFloat(document.getElementById("dt2").value);
+
+                var flow = Math.abs((fem * dt) / (N * - 1));
+
+                document.getElementById("Flow").value = flow;
+            }
+            function Timefar(){
+            
+                var N = parseFloat(document.getElementById("N3").value);
+                var fem = parseInt(document.getElementById("fem1").value);
+                var dF = parseInt(document.getElementById("df").value);
+
+                var dT = Math.abs(dF/fem) / (N * -1);
+
+                document.getElementById("time").value = dT;
+            }
+            function femind(){
+                var dF = parseInt(document.getElementById("flow2").value);
+                var dT = parseInt(document.getElementById("dt3").value);
+                
+                var fI = (dF * -1) / dT;
+
+                document.getElementById("femind").value = fI;
+            }
+            function Flowliner(){
+                var B = parseFloat(document.getElementById("B").value);
+                var A = parseFloat(document.getElementById("A").value);
+                var theta = parseFloat(document.getElementById("angulo").value) * (180 / Math.PI);
+                
+                var F = Math.abs(B) * A * Math.cos(theta)
+            }
+            function Flowline(){
+                var B = parseFloat(document.getElementById("B").value);
+                var A = parseFloat(document.getElementById("A").value);
+                var theta = parseFloat(document.getElementById("angulo").value);
+                
+                var F = Math.abs(B) * A * Math.cos(theta)
+            }
+            function femind1(){
+                var B = parseFloat(document.getElementById("B1").value);
+                var w = parseFloat(document.getElementById("va").value);
+                var V = parseFloat(document.getElementById("V").value);
+
+                fem = B * w * V;
+                
+                document.getElementById("finducida").value = fem;
+            }
+            function FINDESPIRA(){
+                var dF = parseInt(document.getElementById("flow4").value);
+                var dT = parseInt(document.getElementById("time3").value);
+                var N = parseInt(document.getElementById("N5").value);
+                
+                var fI = ((dF * -1) / dT) * N;
+
+                document.getElementById("FINDUCIDA").value = fI;                
+            }
+        </script>
+    </head>
+    <body>
+        <div class="a">
+            <a class="c"  href="index.html">Home</a>
+            <a class="b"  href="#main">De vuelta arriba</a>
+            <a class="b"  href="#Ampere">Ley de Ampere</a>
+            <a class="b"  href="#Faraday">Ley de Faraday</a>
+            <a class="b" href="#Inducidas">Corrientes Inducidas</a>
+            <a class="b" href="#Induccion">Leyes de Induccion</a>
+            <a class="b" href="#Alterna">Generador de corriente alterna</a>
+            <a class="b" href="#BS">Biot-Savart</a>
+        </div>
+        <div class="body" id="main">
+            <h1>Contstantes</h1>
+            <p>M0 = 4.7*10^-7</p>
+            <div id="Ampere">
+                <h1 class="title">Ley de Ampere</h1>
+                    <p>Debido al uso de integrales, favor de usar wolfram</p>
+                    <img src="src/AmpFormula.png">
+            </div>
+            <div id="Faraday">
+                <h1 class="title">Ley de Faraday</h1>
+                <h2>Teoria</h2>
+                <p> Faraday solamente funciona si dos o uno de los parametros esta en cambio</p>
+                <h2>fem</h2>
+                <label>N</label>
+                <br>
+                <input type="number" id="N">
+                <br>
+                <label>Diferencia de flujo</label>
+                <br>
+                <input type="number" id="dFb">
+                <br>
+                <label>Diferencia de tiempo</label>
+                <br>
+                <input type="number" id="dt">
+                <br>
+                <button onclick="fem()">Calcular</button>
+                <br>
+                <label>fem = </label>
+                <input id="fem"></input>
+                <h2>Diferencia de flujo</h2>
+                <label>fem</label>
+                <br>
+                <input type="number" id=Fem">
+                <br>
+                <label>Diferencia de tiempo</label>
+                <br>
+                <input type="number" id="dt2">
+                <br>
+                <label>N</label>
+                <br>
+                <input type="number" id="N2">
+                <br>
+                <button onclick="Flowfar()">Calcular</button>
+                <br>
+                <label>Diferencia de flujo = </label><input id="Flow">
+                <h2>Diferencia de tiempo</h2>
+                <label>fem</label>
+                <br>
+                <input type="number" id=fem1">
+                <br>
+                <label>Diferencia de flujo</label>
+                <br>
+                <input type="number" id="df">
+                <br>
+                <label>N</label>
+                <br>
+                <input type="number" id="N3">
+                <br>
+                <button onclick="Timefar()">Calcular</button>
+                <br>
+                <label>Diferencia de tiempo = </label><input id="time">
+            </div>
+            <div id="Inducidas">
+                <h1 class="title">Corrientes Inducidas</h1>
+                <h2>Fem inducida</h2>
+                <label>Diferencia de flujo</label>
+                <br>
+                <input id="flow2">
+                <br>
+                <label>Diferencia de tiempo</label>
+                <br>
+                <input id="dt3">
+                <br>
+                <label>Fem inducida = </label>
+                <input id="femind">
+                <button onclick="femind()">Calcular</button>
+                <h2>Flujo de Lineas que atraviesan la superficie</h2>
+                <label>Magnitud del campo</label>
+                <br>
+                <input id="B">
+                <br>
+                <label>A</label>
+                <br>
+                <input id="A">
+                <br>
+                <label>Angulo</label>
+                <br>
+                <input id="angulo">
+                <br>
+                <label>Flujo</label>
+                <input id="flujo">
+                <button onclick="Flowliner()">Calc deg</button>
+                <button onclick="Flowline()">Calc rad</button>
+            </div>
+            <div id="Induccion">
+                <h1 class="title">Leyes de Induccion</h1>
+                <h2>Fem inducida</h2>
+                <label>Diferencia de flujo</label>
+                <br>
+                <input id="flow2">
+                <br>
+                <label>Diferencia de tiempo</label>
+                <br>
+                <input id="dt3">
+                <br>
+                <label>Fem inducida = </label>
+                <input id="femind">
+                <button onclick="femind()">Calcular</button>
+                <h2>Fem inducida con velocidad angular</h2>
+                <label>velocidad angular</label>
+                <br>
+                <input id="va">
+                <br>
+                <label>Magnitud del campo</label>
+                <br>
+                <input id="B1">
+                <br>
+                <label>Voltaje</label>
+                <br>
+                <input id="V">
+                <br>
+                <label>fem inducida = </label>
+                <input id="finducida">
+                <button onclick="femind1()">Calcular</button>
+            </div>
+            <div id="Alterna">
+                <h1 class="title">Generador de corriente alterna</h1>
+                <h2>Fem inducida</h2>
+                <label>Diferencia de flujo</label>
+                <br>
+                <input id="flow2">
+                <br>
+                <label>Diferencia de tiempo</label>
+                <br>
+                <input id="dt3">
+                <br>
+                <label>Fem inducida = </label>
+                <input id="femind">
+                <h2>Fem inducida(espira)</h2>
+                <label>dF</label>
+                <br>
+                <input id="flow4">
+                <br>
+                <label>dT</label>
+                <br>
+                <input id="time3">
+                <br>
+                <label>Numero de vueltas</label>
+                <br>
+                <input id="N5">
+                <br>
+                <label>Fem inducida = </label>
+                <input id="FINDUCIDA">
+                <br>
+                <button onclick="FINDESPIRA()">Calcular</button>;
+            </div>
+            <div id="BS">
+                <h1 class="title">Biot-Savart</h1>
+                <img src="src/Biotsavart.png"
+            </div>
+        </div>
+    </body>
+</html>
